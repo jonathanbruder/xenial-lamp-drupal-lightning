@@ -31,15 +31,14 @@ cp -ua ${VAGRANT_MOUNT_DIR}/provisioning/redis /etc/
 service redis-server restart
 
 #deploy bash profile
-sed -i.previous 's/__PROJECT_NAME__/${VAGRANT_PROJECT_NAME}/' ${VAGRANT}/.bash_profile
 cp -ua ${VAGRANT_MOUNT_DIR}/provisioning/bash/bash_profile ${VAGRANT}/.bash_profile
+sed -i.previous 's/__PROJECT_NAME__/${VAGRANT_PROJECT_NAME}/' ${VAGRANT}/.bash_profile
 
 
 #Install composer packages
 cd ${VAGRANT_MOUNT_DIR}
 cd ..
 
-mkdir /tmp/package
-mv -R ${VAGRANT_MOUNT_DIR}/* /tmp/package/*
-composer create-project acquia/lightning-project ${VAGRANT_PROJECT_NAME} --no-interaction
-mv -R /tmp/package/* ${VAGRANT_MOUNT_DIR}/
+composer create-project acquia/lightning-project ${VAGRANT_PROJECT_NAME}_tmp --no-interaction
+mv -R ${VAGRANT_PROJECT_NAME}_tmp/* ${VAGRANT_PROJECT_NAME}/
+rm -r ${VAGRANT_PROJECT_NAME}_tmp
