@@ -21,7 +21,7 @@ shellEnv = {
 
 Vagrant.configure("2") do |config|
 	config.vm.provider "virtualbox" do |v|
-  		v.memory = 2048
+  		v.memory = 4096
   		v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
         v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   		v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/var_www", "1"]

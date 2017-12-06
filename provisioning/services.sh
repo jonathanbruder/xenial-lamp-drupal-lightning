@@ -16,13 +16,11 @@ apt-get update && apt-get install -y zip lamp-server^ php-mbstring php7.0-intl p
 #create default database
 mysql -uroot -p${VAGRANT_DEV_MYP} -e "CREATE DATABASE IF NOT EXISTS ${VAGRANT_DB} DEFAULT COLLATE = 'utf8_unicode_520_ci'";
 
-
-
 #deploy apache config
 cp -ua ${VAGRANT_MOUNT_DIR}/provisioning/apache2 /etc/
 cd /etc/apache2/sites-available/
-sed -i.previous 's/__PROJECT_NAME__/${VAGRANT_PROJECT_NAME}/' *.conf
-a2ensite *${VAGRANT_ENVIRONMENT}*.conf && a2dissite *default*;
+sed -i.previous 's/__PROJECT_NAME__/'${VAGRANT_PROJECT_NAME}'/' *.conf
+a2ensite *${VAGRANT_ENVIRONMENT}*.conf && a2dissite *default*.conf;
 a2enmod rewrite
 service apache2 reload
 
@@ -32,7 +30,7 @@ service redis-server restart
 
 #deploy bash profile
 cp -ua ${VAGRANT_MOUNT_DIR}/provisioning/bash/bash_profile ${VAGRANT}/.bash_profile
-sed -i.previous 's/__PROJECT_NAME__/${VAGRANT_PROJECT_NAME}/' ${VAGRANT}/.bash_profile
+sed -i.previous 's/__PROJECT_NAME__/'${VAGRANT_PROJECT_NAME}'/' ${VAGRANT}/.bash_profile
 
 
 #Install composer packages
