@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
         skunkworks.vm.box = "ubuntu/xenial64"
 
 
-		skunkworks.vm.hostname = "skunkworks"
+		skunkworks.vm.hostname = baseName+"-skunkworks"
 
 		skunkworks.vm.network :forwarded_port, host: 14000, guest: 13000
 		skunkworks.vm.network :forwarded_port, host: 12010, guest: 10010
