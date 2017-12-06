@@ -22,7 +22,7 @@ mysql -uroot -p${VAGRANT_DEV_MYP} -e "CREATE DATABASE IF NOT EXISTS ${VAGRANT_DB
 cp -ua ${VAGRANT_MOUNT_DIR}/provisioning/apache2 /etc/
 cd /etc/apache2/sites-available/
 sed -i.previous 's/__PROJECT_NAME__/${VAGRANT_PROJECT_NAME}/' *.conf
-a2ensite *${VAGRANT_ENVIRONMENT}* && a2dissite *default*;
+a2ensite *${VAGRANT_ENVIRONMENT}*.conf && a2dissite *default*;
 a2enmod rewrite
 service apache2 reload
 

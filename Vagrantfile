@@ -3,10 +3,12 @@
 DS = File::SEPARATOR
 projectPath = File.dirname(__FILE__)
 baseName = File.basename(projectPath)
-modDir = "/home/vagrant/"+baseName+"/node_modules"
+user = "ubuntu"
+modDir = "/home/"+user+"/"+baseName+"/node_modules"
 mountDir = "/var/www/"+baseName
 shellEnv = {
-   "VAGRANT" => "/home/vagrant",
+   "VAGRANT" => "/home/"+user,
+   "VAGRANT_USERNAME" => user,
    "VAGRANT_PROJECT_NAME" => baseName,
    "VAGRANT_MOD_DIR" => modDir,
    "VAGRANT_MOUNT_DIR" => mountDir,
