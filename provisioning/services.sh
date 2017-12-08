@@ -40,7 +40,7 @@ cp -r ${VAGRANT_PROJECT_NAME} /tmp/${VAGRANT_PROJECT_NAME}
 rm -rf ${VAGRANT_PROJECT_NAME}/*
 rm -rf ${VAGRANT_PROJECT_NAME}/.??*
 composer create-project acquia/lightning-project ${VAGRANT_PROJECT_NAME} --no-interaction
-cp /tmp/${VAGRANT_PROJECT_NAME}/* ${VAGRANT_PROJECT_NAME}/
+cp -r /tmp/${VAGRANT_PROJECT_NAME}/* ${VAGRANT_PROJECT_NAME}/
 if [ -e ${VAGRANT_PROJECT_NAME}/vendor ]
 then
     echo "Move successful; deleting temp project."
