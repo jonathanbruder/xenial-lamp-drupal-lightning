@@ -43,11 +43,18 @@ Vagrant.configure("2") do |config|
 		skunkworks.vm.synced_folder projectPath, mountDir, group: "www-data", mount_options: ['dmode=0775','fmode=0775']
 	end
 
+    config.vm.provision :shell do |shell|
+            shell.privileged = true;
+            shell.path = "provisioning/add-swap.sh"
+            shell.env = shellEnv
+    end
 
     config.vm.provision :shell do |shell|
         shell.privileged = true;
         shell.path = "provisioning/services.sh"
         shell.env = shellEnv
     end
+
+
 
 end
