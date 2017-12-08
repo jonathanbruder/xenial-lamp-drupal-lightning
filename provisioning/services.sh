@@ -36,11 +36,13 @@ sed -i.previous 's/__PROJECT_NAME__/'${VAGRANT_PROJECT_NAME}'/' ${VAGRANT}/.bash
 #Install composer packages
 cd ${VAGRANT_MOUNT_DIR}
 cd ..
-
-composer create-project acquia/lightning-project ${VAGRANT_PROJECT_NAME}_tmp --no-interaction
-mv ${VAGRANT_PROJECT_NAME}_tmp/* ${VAGRANT_PROJECT_NAME}/
+cp -r ${VAGRANT_PROJECT_NAME} /tmp/${VAGRANT_PROJECT_NAME}
+rm -rf ${VAGRANT_PROJECT_NAME}/*
+rm -rf ${VAGRANT_PROJECT_NAME}/.??*
+composer create-project acquia/lightning-project ${VAGRANT_PROJECT_NAME} --no-interaction
+cp /tmp/${VAGRANT_PROJECT_NAME}/* ${VAGRANT_PROJECT_NAME}/
 if [ -e ${VAGRANT_PROJECT_NAME}/vendor ]
 then
     echo "Move successful; deleting temp project."
-    rm -rf ${VAGRANT_PROJECT_NAME}_tmp
+    rm -rf /tmp/${VAGRANT_PROJECT_NAME}
 fi
