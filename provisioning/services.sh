@@ -42,5 +42,5 @@ mv ${VAGRANT_PROJECT_NAME}_tmp/* ${VAGRANT_PROJECT_NAME}/
 if [ -e ${VAGRANT_PROJECT_NAME}/vendor ]
 then
     echo "Move successful; deleting temp project."
-    rm -r ${VAGRANT_PROJECT_NAME}_tmp
+    rm -rf ${VAGRANT_PROJECT_NAME}_tmp
 fi
