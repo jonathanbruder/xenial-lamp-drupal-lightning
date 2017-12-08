@@ -38,5 +38,9 @@ cd ${VAGRANT_MOUNT_DIR}
 cd ..
 
 composer create-project acquia/lightning-project ${VAGRANT_PROJECT_NAME}_tmp --no-interaction
-mv -R ${VAGRANT_PROJECT_NAME}_tmp/* ${VAGRANT_PROJECT_NAME}/
-rm -r ${VAGRANT_PROJECT_NAME}_tmp
+mv ${VAGRANT_PROJECT_NAME}_tmp/* ${VAGRANT_PROJECT_NAME}/
+if [ -e ${VAGRANT_PROJECT_NAME}/vendor ]
+then
+    echo "Move successful; deleting temp project."
+    rm -r ${VAGRANT_PROJECT_NAME}_tmp
+fi
